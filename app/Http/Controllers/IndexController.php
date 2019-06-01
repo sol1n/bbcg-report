@@ -24,14 +24,32 @@ class IndexController extends Controller
         }
     }
 
+    private function getColors($key): array
+    {
+        $colors = ['rgba(200,0,0,0.4)', 'rgba(0,0,200,0.4)'];
+        $colors2 = ['rgba(200,0,0,0.1)', 'rgba(0,0,200,0.1)'];
+
+        if ($key < count($colors)) {
+            return [
+                'main' => $colors[$key],
+                'background' => $colors[$key]
+            ];
+        }
+
+        $random = 'rgba(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0,255) . ',';
+        return [
+            'main' => $random . '0.4)',
+            'background' => $random . '0.1)'
+        ];
+    }
+
     private function getData()
     {
         $partLabels = [
             'Коллегиальность', 'Устремленность в будущее', 'Дистанция власти', 'Отношение к неопределенности', 'Жесткость', 'Цифровое поведение'
         ];
 
-        $colors = ['rgba(200,0,0,0.4)', 'rgba(0,0,200,0.4)'];
-        $colors2 = ['rgba(200,0,0,0.1)', 'rgba(0,0,200,0.1)'];
+        
 
         $scoreMap = [
             1 => 1,
@@ -89,13 +107,15 @@ class IndexController extends Controller
 
         $datasets = [];
 
-        $responses->each(function(FormResponse $response, $key) use (&$datasets, $partMaps, $colors, $colors2, $scoreMap, $users) {
+        $responses->each(function(FormResponse $response, $key) use (&$datasets, $partMaps, $scoreMap, $users) {
+            $colors = $this->getColors($key);
+
             $dataset = [
                 'label' => isset($users[$response->userId])
                     ? $users[$response->userId]
                     : 'User ' . $response->userId,
-                'borderColor' => $colors[$key],
-                'backgroundColor' => $colors2[$key],
+                'borderColor' => $colors['main'],
+                'backgroundColor' => $colors['background'],
                 'data' => [0,0,0,0,0,0]
             ];
 
