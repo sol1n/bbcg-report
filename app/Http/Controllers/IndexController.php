@@ -43,7 +43,7 @@ class IndexController extends Controller
         ];
     }
 
-    private function getData()
+    private function getData($id = null)
     {
         $partLabels = [
             'Коллегиальность', 'Устремленность в будущее', 'Дистанция власти', 'Отношение к неопределенности', 'Жесткость', 'Цифровое поведение'
@@ -82,13 +82,19 @@ class IndexController extends Controller
             }
         }
 
-        $responses = $form->responses([
+        $filter = [
             'where' => [
                 'submittedAt' => [
                     '$exists' => true
                 ]
             ]
-        ]);
+        ];
+
+        if (!is_null($id)) {
+            $filter['where']['id'] = $id;
+        }
+
+        $responses = $form->responses($filter);
 
         $userIds = $responses->map(function(FormResponse $response) {
             return $response->userId;
@@ -147,7 +153,7 @@ class IndexController extends Controller
     public function index()
     {
         return view('index', [
-            'data' => $this->getData(),
+            'data' => $this->getData(request()->get('id')),
         ]);
     }
 }
