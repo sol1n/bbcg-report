@@ -7,7 +7,7 @@
 
         <title>B2bcg report</title>
 
-        <link rel="stylesheet" href="{{ asset('/css/app.css')  }}?22">
+        <link rel="stylesheet" href="{{ asset('/css/app.css')  }}?33">
     </head>
     <body>
         <div class="wrapper">
@@ -16,16 +16,6 @@
                 <div class="plot-wrapper">
                     <canvas data-plot="{{ data|json_encode }}"></canvas>
                 </div>
-            </div>
-            <div class="legend">
-                {% for part in parts %}
-                    <div class="legend-item">
-                        <h2>{{ part.title }}</h2>
-                        <div class="legend-item-description">
-                            {{ part.description|raw }}
-                        </div>
-                    </div>
-                {% endfor %}
             </div>
         </div>
     </body>

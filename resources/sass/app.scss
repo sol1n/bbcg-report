@@ -67,13 +67,20 @@ h1 {
 		width: 100%;
 		margin-bottom: 35px;
 
-		@include respond-to(handhelds) { overflow-x: scroll; }
+		@include respond-to(handhelds) {
+			overflow-x: scroll;
+			-webkit-overflow-scrolling: touch;
+		}
 
-		-webkit-overflow-scrolling: touch;
 
 		&-wrapper {
 			min-width: 600px;
 			width: 100%;
+
+			@include respond-to(handhelds) {
+				overflow-x: scroll;
+				-webkit-overflow-scrolling: touch;
+			}
 		}
 	}
 }
