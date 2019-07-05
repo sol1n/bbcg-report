@@ -3,9 +3,11 @@
 
 // Variables
 @import 'variables';
+@import '../../node_modules/reset-css/sass/_reset';
 
 body {
-	font-family: $font-family-sans-serif;	
+	font-family: $font-family-sans-serif;
+	line-height: $line-height-base;	
 }
 
 h1 {
@@ -24,11 +26,16 @@ h1 {
 
 		h2 {
 			font-size: 18px;
-			margin: 0 0 7px;
+			margin: 0 0 6px;
+			font-weight: bold;
+		}
+
+		p {
+			margin: 5px 0;
 		}
 
 		&-item {
-			margin-bottom: 15px;
+			margin-bottom: 25px;
 		}
 
 		&-item-description {
