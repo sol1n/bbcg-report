@@ -68,12 +68,15 @@ h1 {
 
 		@include respond-to(handhelds) {
 			overflow-x: scroll;
-			-webkit-overflow-scrolling: touch;
 		}
 
 		&-wrapper {
 			min-width: 600px;
 			width: 100%;
+
+			-webkit-overflow-scrolling: touch;
+
+			
 		}
 	}
 }
