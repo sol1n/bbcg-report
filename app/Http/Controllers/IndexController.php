@@ -132,7 +132,7 @@ class IndexController extends Controller
                     : 'User ' . $response->userId,
                 'borderColor' => $colors['main'],
                 'backgroundColor' => $colors['background'],
-                'data' => [0,0,0,0,0,0]
+                'data' => [0,0,0,0,0,0,0,0]
             ];
 
             foreach ($partMaps as $partKey => $part) {
