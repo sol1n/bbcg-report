@@ -22,10 +22,10 @@ $(function(){
 						min: 0,
 						max: 4,
 						stepSize: 1,
-						fontSize: 8
+						fontSize: 14
 					},
 					pointLabels: {
-				    	fontSize: 8,
+				    	fontSize: 14,
 				    	fontColor: '#111'
 				    }
 				},
