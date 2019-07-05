@@ -49,6 +49,18 @@ class IndexController extends Controller
             'Коллегиальность', 'Устремленность в будущее', 'Дистанция власти', 'Отношение к неопределенности', 'Жесткость', 'Цифровое поведение'
         ];
 
+        $parts = Element::list('culturalCodeLegend', $this->user->backend, [
+            'take' => -1,
+            'order' => [
+                'order' => 'asc'
+            ]
+        ])->map(function(Element $element) {
+            return [
+                'title' => $element->fields['title'] ?? '',
+                'description' => $element->fields['description'] ?? '',
+            ];
+        });
+
         $scoreMap = [
             1 => 4,
             0 => 3,
@@ -66,7 +78,7 @@ class IndexController extends Controller
 
         foreach ($form->parts as $key => $part) {
             $partMaps[$key] = [
-                'label' => $partLabels[$key],
+                'label' => $parts[$key]['title'],
                 'questions' => []
             ];
 
@@ -142,7 +154,8 @@ class IndexController extends Controller
                 'labels' => $partLabels,
                 'datasets' => $datasets
             ],
-            'form' => $form
+            'form' => $form,
+            'parts' => $parts
         ];
     }
 
@@ -151,7 +164,8 @@ class IndexController extends Controller
         $data = $this->getData(request()->get('id'));
         return view('index', [
             'data' => $data['chart'],
-            'title' => array_first($data['form']->title)
+            'title' => array_first($data['form']->title),
+            'parts' => $data['parts']
         ]);
     }
 }

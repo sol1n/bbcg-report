@@ -10,8 +10,22 @@
         <link rel="stylesheet" href="{{ asset('/css/app.css')  }}">
     </head>
     <body>
-        <h1>{{ title }}</h1>
-        <canvas data-plot="{{ data|json_encode }}"></canvas>
+        <div class="wrapper">
+            <h1>{{ title }}</h1>
+            <div class="plot">
+                <canvas data-plot="{{ data|json_encode }}"></canvas>
+            </div>
+            <div class="legend">
+                {% for part in parts %}
+                    <div class="legend-item">
+                        <h2>{{ part.title }}</h2>
+                        <div class="legend-item-description">
+                            {{ part.description|raw }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </body>
 
     <script src="{{ asset('/js/app.js') }}"></script>

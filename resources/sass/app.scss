@@ -4,7 +4,42 @@
 // Variables
 @import 'variables';
 
+body {
+	font-family: $font-family-sans-serif;	
+}
+
 h1 {
 	text-align: center;
-	font-family: $font-family-sans-serif;
+	font-size: 25px;
+	margin: 20px 0 40px;
+}
+
+.wrapper {
+	width: 1400px;
+	margin: 0 auto;
+
+	.legend {
+		width: 100%;
+		color: #111;
+
+		h2 {
+			font-size: 18px;
+			margin: 0 0 7px;
+		}
+
+		&-item {
+			margin-bottom: 15px;
+		}
+
+		&-item-description {
+			color: #222;
+			font-size: 15px;
+		}
+
+	}
+
+	.plot {
+		width: 100%;
+		margin-bottom: 35px;
+	}
 }

@@ -1,1 +1,1 @@
-@import url(https://fonts.googleapis.com/css?family=Open Sans);h1{text-align:center;font-family:Open Sans,sans-serif}
+@import url(https://fonts.googleapis.com/css?family=Open Sans);body{font-family:Open Sans,sans-serif}h1{text-align:center;font-size:25px;margin:20px 0 40px}.wrapper{width:1400px;margin:0 auto}.wrapper .legend{width:100%;color:#111}.wrapper .legend h2{font-size:18px;margin:0 0 7px}.wrapper .legend-item{margin-bottom:15px}.wrapper .legend-item-description{color:#222;font-size:15px}.wrapper .plot{width:100%;margin-bottom:35px}
