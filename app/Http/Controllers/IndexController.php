@@ -45,10 +45,6 @@ class IndexController extends Controller
 
     private function getData($id = null)
     {
-        $partLabels = [
-            'Коллегиальность', 'Устремленность в будущее', 'Дистанция власти', 'Отношение к неопределенности', 'Жесткость', 'Цифровое поведение'
-        ];
-
         $parts = Element::list('culturalCodeLegend', $this->user->backend, [
             'take' => -1,
             'order' => [
@@ -146,12 +142,16 @@ class IndexController extends Controller
                 $value = round($value / count($partMaps[$partIndex]['questions']), 1);
             }
 
+            
+
             $datasets[] = $dataset;
         });
 
         return [
             'chart' => [
-                'labels' => $partLabels,
+                'labels' => $parts->map(function($part) {
+                    return $part['title'];
+                })->toArray(),
                 'datasets' => $datasets
             ],
             'form' => $form,
