@@ -17,8 +17,11 @@ h1 {
 }
 
 .wrapper {
-	width: 1140px;
+	width: 100%;
+	max-width: 1110px;
 	margin: 0 auto;
+	padding: 0 7px;
+	box-sizing:border-box;
 
 	.legend {
 		width: 100%;

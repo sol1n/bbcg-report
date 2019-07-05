@@ -12,7 +12,6 @@ $(function(){
 		var data = $(this).data('plot');
 
 		var radarChart = new Chart(this, {
-			maintainAspectRatio: false,
 			type: 'radar',
 			data: data,
 			options: {
@@ -23,10 +22,10 @@ $(function(){
 						min: 0,
 						max: 4,
 						stepSize: 1,
-						fontSize: 18
+						fontSize: 9
 					},
 					pointLabels: {
-				    	fontSize: 18,
+				    	fontSize: 9,
 				    	fontColor: '#111'
 				    }
 				},
