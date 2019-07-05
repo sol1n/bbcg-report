@@ -5,6 +5,21 @@
 @import 'variables';
 @import '../../node_modules/reset-css/sass/_reset';
 
+$small: 414px;
+$large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $small + 1) and (max-width: $large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $large) { @content; }
+  }
+}
+
 body {
 	font-family: $font-family-sans-serif;
 	line-height: $line-height-base;	
@@ -51,5 +66,12 @@ h1 {
 	.plot {
 		width: 100%;
 		margin-bottom: 35px;
+
+		@include respond-to(handhelds) { overflow-x: scroll; }		
+
+		&-wrapper {
+			min-width: 600px;
+			width: 100%;
+		}
 	}
 }

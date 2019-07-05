@@ -22,10 +22,10 @@ $(function(){
 						min: 0,
 						max: 4,
 						stepSize: 1,
-						fontSize: 9
+						fontSize: 14
 					},
 					pointLabels: {
-				    	fontSize: 9,
+				    	fontSize: 14,
 				    	fontColor: '#111'
 				    }
 				},
@@ -42,5 +42,10 @@ $(function(){
 		        }
 			}
 		});
-	})
+	});
+
+	var outerContent = $('.plot');
+    var innerContent = $('.plot-wrapper');
+
+    outerContent.scrollLeft((innerContent.width() - outerContent.width()) / 2);
 })

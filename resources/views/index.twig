@@ -13,7 +13,9 @@
         <div class="wrapper">
             <h1>{{ title }}</h1>
             <div class="plot">
-                <canvas data-plot="{{ data|json_encode }}"></canvas>
+                <div class="plot-wrapper">
+                    <canvas data-plot="{{ data|json_encode }}"></canvas>
+                </div>
             </div>
             <div class="legend">
                 {% for part in parts %}

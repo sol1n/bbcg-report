@@ -73,13 +73,15 @@ class IndexController extends Controller
         ])->first();
 
         foreach ($form->parts as $key => $part) {
-            $partMaps[$key] = [
-                'label' => $parts[$key]['title'],
-                'questions' => []
-            ];
+            if ($key) {
+                $partMaps[$key - 1] = [
+                    'label' => $parts[$key - 1]['title'],
+                    'questions' => []
+                ];
 
-            foreach ($part['sections'][0]['groups'] as $group) {
-                $partMaps[$key]['questions'][] = $group['controls'][0]['id'];
+                foreach ($part['sections'][0]['groups'] as $group) {
+                    $partMaps[$key - 1]['questions'][] = $group['controls'][0]['id'];
+                }
             }
         }
 
@@ -141,8 +143,6 @@ class IndexController extends Controller
             foreach ($dataset['data'] as $partIndex => &$value) {
                 $value = round($value / count($partMaps[$partIndex]['questions']), 1);
             }
-
-            
 
             $datasets[] = $dataset;
         });
