@@ -49,13 +49,6 @@ class IndexController extends Controller
             'Коллегиальность', 'Устремленность в будущее', 'Дистанция власти', 'Отношение к неопределенности', 'Жесткость', 'Цифровое поведение'
         ];
 
-        // $scoreMap = [
-        //     1 => 1,
-        //     0 => 2,
-        //     2 => 3,
-        //     3 => 4
-        // ];
-
         $scoreMap = [
             1 => 4,
             0 => 3,
@@ -145,15 +138,20 @@ class IndexController extends Controller
         });
 
         return [
-            'labels' => $partLabels,
-            'datasets' => $datasets
+            'chart' => [
+                'labels' => $partLabels,
+                'datasets' => $datasets
+            ],
+            'form' => $form
         ];
     }
 
     public function index()
     {
+        $data = $this->getData(request()->get('id'));
         return view('index', [
-            'data' => $this->getData(request()->get('id')),
+            'data' => $data['chart'],
+            'title' => array_first($data['form']->title)
         ]);
     }
 }

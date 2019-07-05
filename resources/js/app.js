@@ -25,11 +25,11 @@ $(function(){
 						fontSize: 18
 					},
 					pointLabels: {
-				    	fontSize: 30
+				    	fontSize: 25
 				    }
 				},
 				legend: {
-				    position: 'left'
+				    display: false
 				},
 				tooltips: {
 		            callbacks: {
