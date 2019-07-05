@@ -60,7 +60,6 @@ h1 {
 			color: #222;
 			font-size: 15px;
 		}
-
 	}
 
 	.plot {
@@ -68,9 +67,7 @@ h1 {
 		margin-bottom: 35px;
 
 		@include respond-to(handhelds) {
-			overflow: none;
-			overflow-x: auto;
-			display: block;
+			overflow-x: scroll;
 			-webkit-overflow-scrolling: touch;
 		}
 
