@@ -141,7 +141,7 @@ class IndexController extends Controller
             }
 
             foreach ($dataset['data'] as $partIndex => &$value) {
-                $value = round($value / count($partMaps[$partIndex]['questions']), 1);
+                $value = round($value / count($partMaps[$partIndex]['questions']) * 4, 1);
             }
 
             $datasets[] = $dataset;

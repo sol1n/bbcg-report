@@ -20,7 +20,7 @@ $(function(){
 					ticks: {
 						beginAtZero: true,
 						min: 0,
-						max: 4,
+						max: 12,
 						stepSize: 1,
 						fontSize: 14
 					},
