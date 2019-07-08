@@ -31,6 +31,11 @@ h1 {
 	margin: 20px 0 40px;
 }
 
+html {
+	width: 1px;
+    min-width: 100%;
+}
+
 .wrapper {
 	width: 100%;
 	max-width: 1110px;
