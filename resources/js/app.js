@@ -57,11 +57,11 @@ $(function(){
 		
 		if (navigator.userAgent.match(/ipad|iphone/i)) {
 			range = document.createRange();
-			range.selectNodeContents(input);
+			range.selectNodeContents(input[0]);
 			selection = window.getSelection();
 			selection.removeAllRanges();
 			selection.addRange(range);
-			input.setSelectionRange(0, 999999);
+			input[0].setSelectionRange(0, 999999);
 		}
 		else {
 			input.select();
