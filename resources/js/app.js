@@ -48,4 +48,28 @@ $(function(){
     var innerContent = $('.plot-wrapper');
 
     outerContent.scrollLeft((innerContent.width() - outerContent.width()) / 2);
+
+    $('.share button').on('click', function() {
+    	var input = $(this).siblings('input');
+
+		var range,
+			selection;
+		
+		if (navigator.userAgent.match(/ipad|iphone/i)) {
+			range = document.createRange();
+			range.selectNodeContents(input);
+			selection = window.getSelection();
+			selection.removeAllRanges();
+			selection.addRange(range);
+			input.setSelectionRange(0, 999999);
+		}
+		else {
+			input.select();
+		}
+		document.execCommand('copy');
+
+    	$(this).text('Скопировано');
+
+    	console.log(input);
+    });
 })

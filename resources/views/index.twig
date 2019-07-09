@@ -17,6 +17,14 @@
                     <canvas data-plot="{{ data|json_encode }}"></canvas>
                 </div>
             </div>
+            <div class="share">
+                <h2>Поделитесь результатами своего прохождения</h2>
+                <input value="{{ resultsUrl }}" />
+                <button role="button">Копировать</button>
+                <small>Скопируйте ссылку на ваши результаты</small>
+
+                <div class="text">Для проведения детального анализа в рамках компании оставьте заявку, написав на <a href="mailto:iren@b2bcg.ru">iren@b2bcg.ru</a></div>
+            </div>
             <div class="legend">
                 {% for part in parts %}
                     <div class="legend-item">

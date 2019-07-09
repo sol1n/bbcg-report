@@ -26,8 +26,8 @@ class IndexController extends Controller
 
     private function getColors($key): array
     {
-        $colors = ['rgba(200,0,0,0.4)', 'rgba(0,0,200,0.4)'];
-        $colors2 = ['rgba(200,0,0,0.1)', 'rgba(0,0,200,0.1)'];
+        $colors = ['rgba(247,116,36,0.4)', 'rgba(0,0,200,0.4)'];
+        $colors2 = ['rgba(247,116,36,0.1)', 'rgba(0,0,200,0.1)'];
 
         if ($key < count($colors)) {
             return [
@@ -165,7 +165,8 @@ class IndexController extends Controller
         return view('index', [
             'data' => $data['chart'],
             'title' => array_first($data['form']->title),
-            'parts' => $data['parts']
+            'parts' => $data['parts'],
+            'resultsUrl' => config('app.url') . (request()->get('id') ? '?id=' . request()->get('id') : '')
         ]);
     }
 }
