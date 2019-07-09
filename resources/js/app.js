@@ -70,6 +70,13 @@ $(function(){
 
     	$(this).text('Скопировано');
 
+    	if (navigator.userAgent.match(/ipad|iphone/i)) {
+    		input[0].setSelectionRange(0, 0);
+    		range.selectNodeContents(input[0]);
+			selection = window.getSelection();
+			selection.removeAllRanges();
+    	}
+
     	console.log(input);
     });
 })
