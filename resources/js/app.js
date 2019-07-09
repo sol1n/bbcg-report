@@ -75,6 +75,8 @@ $(function(){
     		range.selectNodeContents(input[0]);
 			selection = window.getSelection();
 			selection.removeAllRanges();
+    	} else {
+    		input.blur();
     	}
 
     	console.log(input);
