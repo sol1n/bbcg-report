@@ -138,7 +138,7 @@ class IndexController extends Controller
             ])->mapWithKeys(function(Element $profile) {
                 return ($profile->fields['lastName'] || $profile->fields['firstName'])
                     ? [$profile->fields['userId'] => $profile->fields['lastName'] . ' ' . $profile->fields['firstName']]
-                    : [$profile->fields['userId'] => 'Ваше прохождение'];
+                    : [$profile->fields['userId'] => 'Ваш результат'];
             })->toArray();
         } else {
             $users = [];
@@ -154,7 +154,7 @@ class IndexController extends Controller
             $dataset = [
                 'label' => isset($users[$response->userId])
                     ? $users[$response->userId]
-                    : 'Ваше прохождение',
+                    : 'Ваш результат',
                 'borderColor' => $colors['main'],
                 'backgroundColor' => $colors['background'],
                 'data' => $emptyData
