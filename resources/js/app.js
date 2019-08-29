@@ -29,9 +29,6 @@ $(function(){
 				    	fontColor: '#111'
 				    }
 				},
-				legend: {
-				    display: false
-				},
 				tooltips: {
 		            callbacks: {
 		                label: function(tooltipItems, data) {
