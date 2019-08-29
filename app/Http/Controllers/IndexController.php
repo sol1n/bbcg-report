@@ -154,7 +154,7 @@ class IndexController extends Controller
             $dataset = [
                 'label' => isset($users[$response->userId])
                     ? $users[$response->userId]
-                    : 'User ' . $response->userId,
+                    : 'Ваше прохождение',
                 'borderColor' => $colors['main'],
                 'backgroundColor' => $colors['background'],
                 'data' => $emptyData
