@@ -13,6 +13,10 @@ class IndexController extends Controller
 {
     private $user;
 
+    private $formId;
+
+    private $exampleId;
+
     public function __construct()
     {
         if (Cache::has('appercode-user')) {
@@ -21,6 +25,17 @@ class IndexController extends Controller
             $token = config('appercode.token');
             $this->user = User::LoginByToken((new Backend), $token);
             Cache::put('appercode-user', $this->user, 20);
+        }
+
+        $this->formId = 'c050d07f-0270-49a7-bca3-e95017822523';
+        $this->exampleId = null;
+
+        if (request()->has('formId')) {
+            $this->formId = request()->get('formId');
+        }
+
+        if (request()->has('exampleId')) {
+            $this->exampleId = request()->get('exampleId');
         }
     }
 
@@ -49,6 +64,9 @@ class IndexController extends Controller
             'take' => -1,
             'order' => [
                 'order' => 'asc'
+            ],
+            'where' => [
+                'formId' => $this->formId
             ]
         ])->map(function(Element $element) {
             return [
@@ -68,14 +86,14 @@ class IndexController extends Controller
 
         $form = Form::list($this->user->backend, [
             'where' => [
-                'id' => 'c050d07f-0270-49a7-bca3-e95017822523'
+                'id' => $this->formId
             ]
         ])->first();
 
         foreach ($form->parts as $key => $part) {
             if ($key) {
                 $partMaps[$key - 1] = [
-                    'label' => $parts[$key - 1]['title'],
+                    'label' => $parts[$key - 1]['title'] ?? "Часть $key",
                     'questions' => []
                 ];
 
@@ -93,8 +111,15 @@ class IndexController extends Controller
             ]
         ];
 
-        if (!is_null($id)) {
-            $filter['where']['id'] = $id;
+        if (!is_null($id) or !is_null($this->exampleId)) {
+            $ids = [];
+            if (!is_null($id)) {
+                $ids[] = $id;
+            }
+            if (!is_null($this->exampleId)) {
+                $ids[] = $this->exampleId;
+            }
+            $filter['where']['id']['$in'] = $ids;
         }
 
         $responses = $form->responses($filter);
@@ -124,13 +149,15 @@ class IndexController extends Controller
         $responses->each(function(FormResponse $response, $key) use (&$datasets, $partMaps, $scoreMap, $users) {
             $colors = $this->getColors($key);
 
+            $emptyData = array_fill(0, count($partMaps), 0);
+
             $dataset = [
                 'label' => isset($users[$response->userId])
                     ? $users[$response->userId]
                     : 'User ' . $response->userId,
                 'borderColor' => $colors['main'],
                 'backgroundColor' => $colors['background'],
-                'data' => [0,0,0,0,0,0,0,0]
+                'data' => $emptyData
             ];
 
             foreach ($partMaps as $partKey => $part) {
