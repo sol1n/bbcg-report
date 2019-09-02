@@ -189,11 +189,20 @@ class IndexController extends Controller
     public function index()
     {
         $data = $this->getData(request()->get('id'));
+
+        // Html special chars clearing located in template
+        $resultsUrl = config('app.url') . (request()->get('id') ? '?id=' . request()->get('id') : '');
+        if (request()->has('formId')) {
+            $resultsUrl .= '&formId=' . request()->get('formId');
+        }
+        if (request()->has('exampleId')) {
+            $resultsUrl .= '&exampleId=' . request()->get('exampleId');
+        }
         return view('index', [
             'data' => $data['chart'],
             'title' => array_first($data['form']->title),
             'parts' => $data['parts'],
-            'resultsUrl' => config('app.url') . (request()->get('id') ? '?id=' . request()->get('id') : '')
+            'resultsUrl' => $resultsUrl
         ]);
     }
 }
