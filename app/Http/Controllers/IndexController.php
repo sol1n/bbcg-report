@@ -148,6 +148,7 @@ class IndexController extends Controller
 
         $responses->each(function(FormResponse $response, $key) use (&$datasets, $partMaps, $scoreMap, $users) {
             $colors = $this->getColors($key);
+            $total = 0;
 
             $emptyData = array_fill(0, count($partMaps), 0);
 
@@ -169,7 +170,10 @@ class IndexController extends Controller
 
             foreach ($dataset['data'] as $partIndex => &$value) {
                 $value = round($value / count($partMaps[$partIndex]['questions']) * 3, 1);
+                $total += $value;
             }
+
+            $dataset['label'] .= ": $total";
 
             $datasets[] = $dataset;
         });
